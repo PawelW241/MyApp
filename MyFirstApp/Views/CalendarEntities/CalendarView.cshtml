@@ -1,0 +1,89 @@
+﻿@using MyFirstApp.Entities;
+@using System.Globalization;
+
+@model IEnumerable<MyFirstApp.Entities.CalendarEntity>
+@{
+    ViewData["Title"] = "CalendarView";
+}
+
+
+<div class="calendar text-center">
+    <div class="calendar-menu">
+        <div class="calendar-menu-option1">
+            <a class="calendar-menu-option-pm" asp-action="CalendarView" asp-route-id="-1">Previous month</a>
+             |
+            <a class="calendar-menu-option-py" asp-action="CalendarView" asp-route-id="-2">Previous year</a>
+        </div>
+        <div class="calendar-date border-top border-bottom">
+            <b>@CalendarModel.Today.ToString("MMMM", CultureInfo.CreateSpecificCulture("en-US"))   @CalendarModel.Today.Year </b>
+        </div>
+        <div class="calendar-menu-option2">
+            <a class="calendar-menu-option-nm" asp-action="CalendarView" asp-route-id="1">Next month</a>
+            |
+            <a class="calendar-menu-option-ny" asp-action="CalendarView" asp-route-id="2">Next year</a>
+        </div>
+    </div>
+    <table class="calendar-table">
+        <thead>
+            <tr>
+                <td>
+                    Monday
+                </td>
+                <td>
+                    Tuesday
+                </td>
+                <td>
+                    Wednesday
+                </td>
+                <td>
+                    Thursday
+                </td>
+                <td>
+                    Friday
+                </td>
+                <td>
+                    Saturday
+                </td>
+                <td>
+                    Sunday
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            @for (int a = CalendarModel.firstDayInTable; a <= CalendarModel.daysInLastMonth; a++)
+            {
+                @:<td>@a</td>
+            }
+            @for (int i = 1; i <= CalendarModel.daysInCurrentMonth; i++)
+            {
+                DateTime renderedDay = new DateTime(CalendarModel.Today.Year, CalendarModel.Today.Month, i);
+                if (renderedDay.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    <td class="calendar-holiday"><a asp-action="CalendarIndex" asp-route-id="@i" class="calendar-holiday-center">@i</a><br>
+                        <div class="EventsCount">@Model.Where(x => x.Date.Day == @i && x.Date.Month == CalendarModel.Today.Month && x.Date.Year == CalendarModel.Today.Year ).Count()</div> 
+                    </td>@:</tr><tr>
+                }
+                else if (renderedDay.DayOfWeek == DayOfWeek.Saturday)
+                {
+                    <td class="calendar-holiday"><a asp-action="CalendarIndex" asp-route-id="@i" class="calendar-holiday-center">@i</a><br>
+                        <div class="EventsCount">@Model.Where(x => x.Date.Day == @i && x.Date.Month == CalendarModel.Today.Month && x.Date.Year == CalendarModel.Today.Year ).Count()</div> 
+                    </td>
+                }
+                else
+                {
+                    <td class="calendar-holiday"><a asp-action="CalendarIndex" asp-route-id="@i" class="calendar-holiday-center">@i</a><br>
+                        <div class="EventsCount">@Model.Where(x => x.Date.Day == @i && x.Date.Month == CalendarModel.Today.Month && x.Date.Year == CalendarModel.Today.Year ).Count()</div>  
+                    </td>
+                    
+                }   
+            }
+            @for (int a = 1; a <= 7-CalendarModel.dayOfWeekLast; a++)
+            {
+                @:<td>@a</td>
+            }
+            </tr>
+        </tbody>
+    </table>
+</div>
+

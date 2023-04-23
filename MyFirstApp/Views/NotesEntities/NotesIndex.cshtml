@@ -1,0 +1,29 @@
+﻿@model IEnumerable<MyFirstApp.Entities.NotesEntity>
+
+@{
+    ViewData["Title"] = "NotesIndex";
+}
+
+<h1>Notes</h1>
+
+<p>
+    <a asp-action="NotesCreate">Create New</a>
+</p>
+<div class="Notes">
+    @foreach (var item in Model)
+    {
+        <div class="NoteItem">
+            <div class="NoteMenu">
+                <h4>@Html.DisplayFor(modelItem => item.Name)</h4><br>
+                <p class="NoteOptions">
+                    <a asp-action="NotesEdit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="NotesDetails" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="NotesDelete" asp-route-id="@item.Id">Delete</a>
+                </p>
+            </div>
+            <h7>
+                @Html.DisplayFor(modelItem => item.Note)
+            </h7>
+        </div>
+    }
+</div>

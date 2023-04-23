@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar{
+    width: 100vw;
+}
+.container{
+    margin:auto;
+}
+    .container a {
+        text-decoration: none;
+    }
+.footer {
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 50px;
+    text-align: center;
+}
+
+
+.calendar {
+    align-items: center;
+    margin-bottom: 50px;
+}
+.calendar-menu-option1{
+    padding: 5px;
+}
+.calendar-menu-option2{
+    margin-bottom:10px;
+    padding: 5px;
+}
+.calendar-date{
+    padding: 5px;
+
+}
+.calendar-table {
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid grey;
+}
+    .calendar-table thead td {
+        height: 50px;
+    }
+
+    .calendar-table td {
+        width: 100px;
+        height: 100px;
+    }
+
+        .calendar-table td:hover {
+            border: 2px solid black;
+            box-shadow: 2px 2px 15px -2px rgb(50, 50, 50);
+        }
+
+.calendar-holiday a {
+    font-size: 26px;
+    color: black;
+    font-weight: bold;
+}
+.EventsCount {
+    color: rgb(128, 128, 128);
+    transform: translate(40px,15px);
+}
+
+
+.Notes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-bottom: 60px;
+}
+.NoteMenu h4 {
+    max-width: 60%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.NoteItem {
+    width: 94%;
+    min-height: 100px;
+    margin: 1%;
+    padding: 15px 15px 30px 15px;
+    border: 2px dashed grey;
+    border-radius: 10px;
+    box-shadow: 5px 5px 8px 8px rgb(128, 128, 128);
+    position: relative;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.NoteOptions {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+.BigInput{
+    height: 10em;
+}
